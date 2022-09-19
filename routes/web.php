@@ -22,7 +22,7 @@ Route::get('/', function () {
 // Route::get('/sales', function () {
 //     return view('sales.index');
 // });
-Route::resource('/sales', SaleController::class);
+Route::resource('/sales', SaleController::class)->scoped(['sale'=>'title']);
 
 // mpesa testing
 Route::get('/mpesa', [MpesaController::class,'mpesa'])->name('mpesa');

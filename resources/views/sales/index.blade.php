@@ -54,19 +54,19 @@
                         </thead>
                         <tbody>
                             
-                            @forelse ($data as $item)
+                            @forelse ($sales as $sale)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->body }}</td>
+                                <td>{{ $sale->id }}</td>
+                                <td>{{ $sale->title }}</td>
+                                <td>{{ $sale->body }}</td>
                                 <td>
-                                    <form action="{{ route('sales.destroy', $item->id) }}" method="post">
+                                    <form action="{{ route('sales.destroy', $sale) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <a class="btn btn-warning "
-                                            href="{{ route('sales.edit', $item->id) }}">Edit</a> <span> <a
+                                            href="{{ route('sales.edit', $sale) }}">Edit</a> <span> <a
                                                 class="btn btn-info"
-                                                href="{{ route('sales.show', $item->id) }}">View</a></span>
+                                                href="{{ route('sales.show', $sale) }}">View</a></span>
                                         <button class="btn btn-danger" type="submit">Delete</button>
                                     </form>
 
@@ -78,7 +78,7 @@
                                 @endforelse
                             
                         </tbody>
-                        {{ $data->links() }}
+                        {{ $sales->links() }}
                     </table>
                     
                 </div>

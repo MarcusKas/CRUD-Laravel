@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">Create a New Sale</div>
             <div class="card-body bg-gray-200">
-                <form action="{{ route('sales.update', $sale->id) }}" method="post">
+                <form action="{{ route('sales.update', $sale) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">

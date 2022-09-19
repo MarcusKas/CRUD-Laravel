@@ -17,9 +17,9 @@ class SaleController extends Controller
     public function index()
     {
         //
-        $data = Sale::latest()->paginate(5);
-        // dd($data);
-        return view('sales.index', compact('data'));
+        $sales = Sale::latest()->paginate(5);
+        // dd($sales);
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -57,9 +57,10 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sale $sale)
     {
         //
+        dd($sale);
     }
 
     /**
@@ -81,15 +82,15 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sale $sale)
     {
         //
-        $sale = Sale::find($id);
-        request()->validate([
+        // $sale = Sale::find($id);
+      $attributes=  $request->validate([
             'title' => 'required',
             'body' => 'required'
         ]);
-        $sale->update($request->all());
+        $sale->update($attributes);
         flash('Record Update Successfully');
         return redirect('/sales')->with('info', 'Record Updated');
     }
@@ -100,11 +101,10 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sale $sale)
     {
         //
-        $sale = Sale::find($id);
-        $sale->delete();
+              $sale->delete();
         Flasher::addError('Record Deleted Successfully');
         return redirect()->back()->with('error','deleted');
     }
