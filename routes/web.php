@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,6 @@ Route::get('/', function () {
 //     return view('sales.index');
 // });
 Route::resource('/sales', SaleController::class);
+
+// mpesa testing
+Route::get('/mpesa', [MpesaController::class,'mpesa'])->name('mpesa');

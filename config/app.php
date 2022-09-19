@@ -163,6 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        \Safaricom\Mpesa\MpesaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -193,5 +194,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+    'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class
 
 ];

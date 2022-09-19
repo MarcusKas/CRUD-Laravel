@@ -16,6 +16,24 @@
             <div class="card-body">
                 <h3 class="text-center text-bold">CRUD Application</h3>
                 <hr>
+
+                @if (session()->has('success'))
+                <div class="fixed bg-green-600 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+                    <p>{{ session()->get('success') }}</p>
+                </div>
+            @endif
+
+            @if (session()->has('error'))
+                <div class="fixed bg-green-600 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+                    <p>{{ session()->get('error') }}</p>
+                </div>
+            @endif
+            @if (session()->has('info'))
+            <div class="fixed bg-green-600 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+                <p>{{ session()->get('info') }}</p>
+            </div>
+        @endif
+
                 @if (session('status'))
                 
                     <p class="text-center text-bold text-info">{{ session('status') }}</p>

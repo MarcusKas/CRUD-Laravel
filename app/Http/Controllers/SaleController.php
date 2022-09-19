@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use Flasher\Laravel\Facade\Flasher;
 use Illuminate\Http\Request;
+use Flasher\Prime\FlashentrIerface;
 
 class SaleController extends Controller
 {
@@ -40,12 +42,13 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         //
-        $sale = Request()->validate([
+        $sale = $request->validate([
             'title' => 'required|string|min:5',
             'body' => 'required|string'
         ]);
         Sale::create($sale);
-        return redirect('/sales')->with('status', 'Created');
+        flash('Data has been saved successfully!') ;// laravel helper function
+        return redirect('/sales')->with('success', 'Created');
     }
 
     /**
@@ -87,7 +90,8 @@ class SaleController extends Controller
             'body' => 'required'
         ]);
         $sale->update($request->all());
-        return redirect('/sales')->with('status', 'Record Updated');
+        flash('Record Update Successfully');
+        return redirect('/sales')->with('info', 'Record Updated');
     }
 
     /**
@@ -101,6 +105,7 @@ class SaleController extends Controller
         //
         $sale = Sale::find($id);
         $sale->delete();
-        return redirect()->back()->with('status','deleted');
+        Flasher::addError('Record Deleted Successfully');
+        return redirect()->back()->with('error','deleted');
     }
 }
